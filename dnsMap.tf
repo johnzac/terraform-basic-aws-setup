@@ -21,6 +21,6 @@ resource "aws_route53_record" "mysql"
   name    = "mysql.${aws_route53_zone.demoapp.name}"
   type    = "CNAME"
   ttl     = "300"
-  records = ["${aws_db_instance.demoAppMysql.endpoint}"]
+  records = ["${aws_db_instance.demoAppMysql.address}"]
 }
 
