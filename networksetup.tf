@@ -1,6 +1,8 @@
 #creating our vpc
 resource "aws_vpc" "demoAppVpc" {
     cidr_block = "192.168.0.0/16"
+   enable_dns_support = "true"
+   enable_dns_hostnames = "true"
 }
 
 #creating our subnets
@@ -85,5 +87,23 @@ resource "aws_route_table_association" "public-subnet-route-us-west-2b"
 {
 subnet_id = "${aws_subnet.public_subnet-us-west-2b.id}"
 route_table_id="${aws_route_table.public-subnet-route-table.id}"
+}
+
+resource "aws_elasticache_subnet_group" "memcache_subnet" 
+{
+  name       = "memcache-subnet-group"
+  subnet_ids = ["${aws_subnet.private_subnet-us-west-2b.id}","${aws_subnet.private_subnet-us-west-2a.id}"]
+
+}
+
+resource "aws_db_subnet_group" "mysql_subnet" 
+{
+  name       = "mysql-subnet-group"
+  subnet_ids = ["${aws_subnet.private_subnet-us-west-2b.id}","${aws_subnet.private_subnet-us-west-2a.id}"]
+
+
+  tags {
+    Name = "Mysql subnet group"
+  }
 }
 

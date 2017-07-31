@@ -33,6 +33,53 @@ vpc_id="${aws_vpc.demoAppVpc.id}"
 
 }
 
+resource "aws_security_group" "memcache"
+{
+name="memcache-security-group"
+description="Security group for memcache cluster"
+ingress{
+from_port = 11211
+to_port = 11211
+protocol = "tcp"
+security_groups = ["${aws_security_group.private-sg.id}"]
+
+}
+
+egress{
+from_port = 0
+to_port = 0
+protocol = "-1"
+security_groups = ["${aws_security_group.private-sg.id}"]
+
+}
+vpc_id="${aws_vpc.demoAppVpc.id}"
+
+}
+
+
+resource "aws_security_group" "mysql"
+{
+name="mysql-security-group"
+description="Security group for mysql instance"
+ingress{
+from_port = 3306
+to_port = 3306
+protocol = "tcp"
+security_groups = ["${aws_security_group.private-sg.id}"]
+
+}
+
+egress{
+from_port = 0
+to_port = 0
+protocol = "-1"
+security_groups = ["${aws_security_group.private-sg.id}"]
+
+}
+vpc_id="${aws_vpc.demoAppVpc.id}"
+
+}
+
 
 
 resource "aws_security_group" "private-sg"
