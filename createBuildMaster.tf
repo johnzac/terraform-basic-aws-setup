@@ -7,4 +7,5 @@ key_name = "mysql-key"
 subnet_id="${aws_subnet.public_subnet-us-west-2a.id}"
 private_ip="192.168.101.5"
 user_data = "${file("userDataProxy")}"
+iam_instance_profile = "${aws_iam_instance_profile.s3_access_profile.id}"
 }
