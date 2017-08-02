@@ -1,6 +1,6 @@
 provider "aws" {
-  access_key = "ACCESS-KEY"
-  secret_key = "SECRET-KEY"
+  access_key = "YOURACCESSKEY"
+  secret_key = "YOURSECRETKEY"
   region     = "us-west-2"
 }
 

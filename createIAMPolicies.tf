@@ -20,3 +20,28 @@ resource "aws_iam_policy" "demoappbucketpolicy"
 EOF
 }
 
+resource "aws_iam_policy" "cloudfrontInvalidationPolicy"
+{
+  name        = "cloudfrontinvalidationpolicy"
+  path        = "/"
+  description = "Policy to allow cloudfront invalidations"
+
+  policy = <<EOF
+{
+   "Version": "2012-10-17",
+   "Statement":[
+      {
+         "Effect":"Allow",
+         "Action":[
+            "cloudfront:GetDistribution",
+            "cloudfront:CreateInvalidation",
+            "cloudfront:GetInvalidation",
+            "cloudfront:ListInvalidations"
+         ],
+         "Resource":"*"
+      }
+   ]
+}
+EOF
+}
+

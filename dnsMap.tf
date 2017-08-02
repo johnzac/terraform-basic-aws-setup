@@ -24,3 +24,12 @@ resource "aws_route53_record" "mysql"
   records = ["${aws_db_instance.demoAppMysql.address}"]
 }
 
+resource "aws_route53_record" "s3"
+{
+  zone_id = "${aws_route53_zone.demoapp.zone_id}"
+  name    = "s3.${aws_route53_zone.demoapp.name}"
+  type    = "CNAME"
+  ttl     = "300"
+  records = ["${aws_s3_bucket.demoApp_bucket.bucket_domain_name}"]
+}
+
