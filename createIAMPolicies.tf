@@ -36,7 +36,8 @@ resource "aws_iam_policy" "cloudfrontInvalidationPolicy"
             "cloudfront:GetDistribution",
             "cloudfront:CreateInvalidation",
             "cloudfront:GetInvalidation",
-            "cloudfront:ListInvalidations"
+            "cloudfront:ListInvalidations",
+            "cloudfront:ListDistributions"
          ],
          "Resource":"*"
       }

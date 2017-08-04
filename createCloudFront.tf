@@ -2,8 +2,15 @@ resource "aws_cloudfront_distribution" "cf_demoapp"
 {
     enabled = true
     origin 
-{
-        domain_name = "${aws_s3_bucket.demoApp_bucket.bucket_domain_name}"
+{      
+
+        custom_origin_config { 
+    origin_protocol_policy = "http-only" 
+    http_port              = 80 
+    https_port             = 443 
+    origin_ssl_protocols   = ["TLSv1.2", "TLSv1.1", "TLSv1"] 
+  } 
+        domain_name = "${aws_s3_bucket.demoApp_bucket.id}.s3-us-west-2.amazonaws.com"
         origin_id = "demoapporigin"
 }
 
